@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Transformation Diagram</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;}
+body{background:#FDFAF4;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;padding:20px;}
+.layout{display:flex;align-items:stretch;gap:14px;width:100%;max-width:620px;}
+
+/* Spin card */
+.spin-card{flex:1;background:#07182E;position:relative;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;border-radius:20px;padding:26px 20px;min-height:270px;}
+.spin-card::before{content:'';position:absolute;width:110px;height:130%;top:50%;left:50%;transform:translate(-50%,-50%) rotate(0deg);animation:rotBG 4s linear infinite;}
+.spin-card.current::before{background-image:linear-gradient(180deg,rgb(210,60,60),rgb(255,140,40));}
+.spin-card.future::before{background-image:linear-gradient(180deg,rgb(0,200,170),rgb(40,140,255));}
+@keyframes rotBG{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+.spin-card::after{content:'';position:absolute;background:#07182E;inset:5px;border-radius:15px;}
+.inner{position:relative;z-index:2;}
+.card-label{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:18px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.current .card-label{color:#FF8A6A;}
+.future .card-label{color:#2CB8A3;}
+.item{display:flex;align-items:flex-start;gap:9px;margin-bottom:12px;font-size:13px;line-height:1.5;color:rgba(255,255,255,0.75);}
+.dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.dot-r{background:#FF6A6A;}.dot-t{background:#2CB8A3;}
+
+/* Arrow bridge */
+.bridge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex-shrink:0;width:52px;}
+.bridge svg{width:44px;overflow:visible;}
+.dash-path{stroke-dasharray:8 4;animation:dashMove 1s linear infinite;}
+@keyframes dashMove{from{stroke-dashoffset:24;}to{stroke-dashoffset:0;}}
+.bridge-lbl{font-family:'Space Mono',monospace;font-size:8px;font-weight:700;letter-spacing:0.1em;color:#C9933A;text-transform:uppercase;text-align:center;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="spin-card current">
+    <div class="inner">
+      <div class="card-label">Existing Operations</div>
+      <div class="item"><div class="dot dot-r"></div><div>Fragmented systems</div></div>
+      <div class="item"><div class="dot dot-r"></div><div>Manual processes</div></div>
+      <div class="item"><div class="dot dot-r"></div><div>Reactive decision-making</div></div>
+      <div class="item"><div class="dot dot-r"></div><div>Data silos &amp; redundancy</div></div>
+      <div class="item"><div class="dot dot-r"></div><div>Error-prone operations</div></div>
+    </div>
+  </div>
+  <div class="bridge">
+    <svg viewBox="0 0 44 30" fill="none">
+      <line class="dash-path" x1="3" y1="15" x2="33" y2="15" stroke="#C9933A" stroke-width="2"/>
+      <path d="M31 9 L41 15 L31 21" fill="none" stroke="#C9933A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="bridge-lbl">Powered<br/>by AI</div>
+  </div>
+  <div class="spin-card future">
+    <div class="inner">
+      <div class="card-label">Scalable AI Execution</div>
+      <div class="item"><div class="dot dot-t"></div><div>Connected data ecosystems</div></div>
+      <div class="item"><div class="dot dot-t"></div><div>Intelligent automation</div></div>
+      <div class="item"><div class="dot dot-t"></div><div>Predictive, real-time decisions</div></div>
+      <div class="item"><div class="dot dot-t"></div><div>Unified data architecture</div></div>
+      <div class="item"><div class="dot dot-t"></div><div>Optimised workflows</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
